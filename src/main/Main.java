@@ -1,9 +1,16 @@
 package main;
 
+import main.controller.EngineController;
+import main.controller.InterfaceController;
+import main.controller.SolverController;
+
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+        // the controller will manage taking user input and calling the specified engine
+        EngineController controller;
         System.out.println("===============================================");
         System.out.println("Welcome to the Logical Expressions System");
         System.out.println("===============================================");
@@ -17,11 +24,21 @@ public class Main {
         Scanner input = new Scanner(System.in);
         choice = input.nextInt();
         if(choice == 1){
-            System.out.println("Logical Expression Solver");
+            controller = new SolverController();
+            controller.run();
+
         }else if(choice == 2){
-            System.out.println("Inference Engine");
+            controller = new InterfaceController();
+            controller.run();
         }else {
             System.out.println("Invalid choice");
         }
     }
 }
+
+// I should make Util class which contains
+// (1) isEquivalent function
+// (2) isNegation function
+
+// or can be written as small or capital v
+// should small and capital letters stand for the same predicate
