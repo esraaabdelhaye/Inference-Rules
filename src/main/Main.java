@@ -21,16 +21,19 @@ public class Main {
 
         int choice;
 
-        Scanner input = new Scanner(System.in);
-        choice = input.nextInt();
-        if(choice == 1){
-            controller = new SolverController();
-            controller.run();
 
-        }else if(choice == 2){
-            controller = new InterfaceController();
-            controller.run();
-        }else {
+        try{
+            Scanner input = new Scanner(System.in);
+            choice = input.nextInt();
+            if (choice == 1) {
+                controller = new SolverController();
+                controller.run();
+
+            } else if (choice == 2) {
+                controller = new InterfaceController();
+                controller.run();
+            }
+        }catch(Exception e) {
             System.out.println("Invalid choice");
         }
     }
