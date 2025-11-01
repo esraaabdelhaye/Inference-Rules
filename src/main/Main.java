@@ -35,10 +35,3 @@ public class Main {
         }
     }
 }
-
-// I should make Util class which contains
-// (1) isEquivalent function
-// (2) isNegation function
-
-// or can be written as small or capital v
-// should small and capital letters stand for the same predicate
