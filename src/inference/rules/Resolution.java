@@ -16,7 +16,7 @@ public class Resolution implements InferenceRule {
         String[] pq_1 = e1.split("v");
         String[] pq_2 = e2.split("v");
 
-        return (pq_1[0].equals("~" + pq_2[0]) || pq_2[0].equals("~" + pq_1[0]));
+        return (Expression.areNegations(pq_1[0], pq_2[0]) || Expression.areNegations(pq_1[1], pq_2[1]) || Expression.areNegations(pq_1[0], pq_2[1]));
     }
 
     @Override
@@ -28,7 +28,14 @@ public class Resolution implements InferenceRule {
         String[] pq_1 = e1.split("v");
         String[] pq_2 = e2.split("v");
         Expression ans = new ExpressionImpl();
-        ans.setRepresentation(pq_1[1] + " v " + pq_2[1] + " (Resolution)");
+        String ansText = "";
+        if(Expression.areNegations(pq_1[0], pq_2[0]))
+            ansText = pq_1[1] + " v " + pq_2[1];
+        else if(Expression.areNegations(pq_1[0], pq_2[1]))
+            ansText = pq_1[1] + " v " + pq_2[0];
+        else if(Expression.areNegations(pq_1[1], pq_2[1]))
+            ansText = pq_1[0] + " v " + pq_2[0];
+        ans.setRepresentation(ansText + " (Resolution)");
         return ans;
     }
 }

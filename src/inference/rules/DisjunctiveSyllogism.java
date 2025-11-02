@@ -16,7 +16,7 @@ public class DisjunctiveSyllogism implements InferenceRule {
 
         String[] pq = e1.split("v");
 
-       return (e2.equals("~" + pq[0]) || e2.equals("~" + pq[1]) || pq[0].equals("~" + e2) || pq[1].equals("~" + e2));
+        return (Expression.areNegations(e2, pq[0]) || Expression.areNegations(e2, pq[1]));
     }
 
     @Override
@@ -26,9 +26,9 @@ public class DisjunctiveSyllogism implements InferenceRule {
 
         String[] pq = e1.split("v");
         Expression ans = new ExpressionImpl();
-        if(e2.equals("~" + pq[0]) || pq[0].equals("~" + e2))
+        if(Expression.areNegations(e2, pq[0]))
             ans.setRepresentation(pq[1] + " (Disjunctive-Syllogism)");
-        else if(e2.equals("~" + pq[1]) || pq[1].equals("~" + e2))
+        else if(Expression.areNegations(e2, pq[1]))
             ans.setRepresentation(pq[0] + " (Disjunctive-Syllogism)");
 
         return ans;
